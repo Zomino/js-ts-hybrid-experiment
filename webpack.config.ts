@@ -1,8 +1,9 @@
+import nodeExternals from 'webpack-node-externals';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import path from 'path';
-import nodeExternals from 'webpack-node-externals';
+import webpack from 'webpack';
 
-const config = {
+const config: webpack.Configuration = {
     entry: './src/index.js',
     externals: [
         nodeExternals(),
@@ -11,9 +12,19 @@ const config = {
     module: {
         rules: [
             {
+                exclude: /node_modules/,
                 test: /\.ts$/,
                 use: 'ts-loader',
-                include: path.resolve(__dirname, 'src'),
+            },
+            {
+                exclude: /node_modules/,
+                test: /.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
             },
         ],
     },
@@ -26,6 +37,9 @@ const config = {
         new NodemonPlugin(),
     ],
     resolve: {
+        alias: {
+            'test-module': path.resolve(__dirname, './test-module'),
+        },
         extensions: ['.ts', '.js'],
     },
     target: 'node',
