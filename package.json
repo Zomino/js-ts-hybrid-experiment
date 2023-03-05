@@ -19,10 +19,7 @@
   },
   "homepage": "https://github.com/Zomino/js-ts-hybrid-experiment#readme",
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
     "@types/webpack-node-externals": "^3.0.0",
-    "babel-loader": "^9.1.2",
     "nodemon-webpack-plugin": "^4.8.1",
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
